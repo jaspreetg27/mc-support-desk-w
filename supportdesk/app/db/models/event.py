@@ -5,7 +5,8 @@ from enum import Enum
 from typing import Optional
 
 from sqlalchemy import DateTime, ForeignKey, String
-from sqlalchemy.dialects.postgresql import JSONB, UUID
+from sqlalchemy import JSON
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
 
@@ -40,7 +41,7 @@ class Event(Base, UUIDMixin):
         index=True,
     )
     type: Mapped[EventType] = mapped_column(String(50), nullable=False)
-    meta: Mapped[Optional[dict]] = mapped_column(JSONB, nullable=True)
+    meta: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
 
     # Single timestamp as per spec
     ts: Mapped[DateTime] = mapped_column(

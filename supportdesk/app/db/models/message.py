@@ -5,7 +5,8 @@ from enum import Enum
 from typing import Optional
 
 from sqlalchemy import ForeignKey, String, UniqueConstraint
-from sqlalchemy.dialects.postgresql import JSONB, UUID
+from sqlalchemy import JSON
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from ..base import Base, TimestampMixin, UUIDMixin
@@ -37,7 +38,7 @@ class Message(Base, UUIDMixin, TimestampMixin):
     platform_message_id: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     direction: Mapped[MessageDirection] = mapped_column(String(10), nullable=False)
     text: Mapped[Optional[str]] = mapped_column(String, nullable=True)
-    media: Mapped[Optional[dict]] = mapped_column(JSONB, nullable=True)
+    media: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
     language: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
 
     # Relationships

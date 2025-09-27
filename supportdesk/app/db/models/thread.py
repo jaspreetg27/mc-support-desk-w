@@ -5,7 +5,8 @@ from enum import Enum
 from typing import List, Optional
 
 from sqlalchemy import ForeignKey, String, UniqueConstraint
-from sqlalchemy.dialects.postgresql import JSONB, UUID
+from sqlalchemy import JSON
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from ..base import Base, TimestampMixin, UUIDMixin
@@ -43,7 +44,7 @@ class Thread(Base, UUIDMixin, TimestampMixin):
         index=True,
     )
     status: Mapped[ThreadStatus] = mapped_column(String(10), default=ThreadStatus.open, nullable=False)
-    labels: Mapped[Optional[List[str]]] = mapped_column(JSONB, default=list)
+    labels: Mapped[Optional[List[str]]] = mapped_column(JSON, default=list)
 
     # Relationships
     tenant = relationship("Tenant", lazy="select")
