@@ -44,17 +44,4 @@ class UUIDMixin:
         nullable=False,
     )
 
-# Import models so they register with Base.metadata
-# NOTE: keep at the bottom to avoid circular imports
-from .models import (  # noqa: E402,F401
-    Customer,
-    Event,
-    EventType,
-    Label,
-    Message,
-    MessageDirection,
-    Tenant,
-    Thread,
-    ThreadChannel,
-    ThreadStatus,
-)
+
